@@ -52,3 +52,9 @@ button {
 svg {
   width: 12px;
 }
+.red {
+  color: red;
+}
+.green{
+  color: green;
+}
