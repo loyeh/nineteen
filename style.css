@@ -58,3 +58,6 @@ svg {
 .green{
   color: green;
 }
+.dragOver{
+  background-color: #afafaf;
+}
