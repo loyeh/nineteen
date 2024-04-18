@@ -68,6 +68,7 @@ function dragstartHandler(ev) {
   dargText = dragItem.innerText;
   console.log(dargText);
 }
+
 function dragoverHandler(ev) {
   ev.preventDefault();
   ev.target.classList.add("dragOver");
@@ -75,22 +76,22 @@ function dragoverHandler(ev) {
   dropText = dropItem.innerText;
   console.log(dropText);
 }
+
 function dragleaveHandler(ev) {
   ev.preventDefault();
   ev.target.classList.remove("dragOver");
- // dragItem.classList.remove("dragOver");
-
 }
+
 function dropHandler(ev) {
   ev.target.classList.remove("dragOver");
   dropItem.innerText = dargText;
   dragItem.innerText = dropText;
   dropItem.classList.remove('dragOver')
 }
+
 window.addEventListener("DOMContentLoaded", () => {
   const arr = shuffle(richest1);
   //console.log(arr);
-
   for (i = 0; i < persons.length; i++) {
     col2[i].innerText = arr[i];
     col2[i].setAttribute("draggable", true);
