@@ -56,6 +56,7 @@ function check() {
     if (col2[i].innerText == richest[i]) {
       col2[i].classList.add("green");
     } else {
+      col2[i].classList.remove("green");
       col2[i].classList.add("red");
     }
   }
