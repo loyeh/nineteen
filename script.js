@@ -27,9 +27,9 @@ const persons = document.getElementsByClassName("person");
 
 const col2 = document.getElementsByClassName("col2");
 
-const checkBtn=document.getElementById('check');
+const checkBtn = document.getElementById("check");
 
-let dragItem,dropItem;
+let dragItem, dropItem, dargText, dropText;
 
 function shuffle(array) {
   let currentIndex = array.length,
@@ -51,49 +51,51 @@ function shuffle(array) {
   return array;
 }
 
-function check(){
-  for(i=0;i<10;i++){
-    if(col2[i].innerText==richest[i]){
-      col2[i].classList.add("green")
-    }else{
-      col2[i].classList.add("red")
-    };
-  };
+function check() {
+  for (i = 0; i < 10; i++) {
+    if (col2[i].innerText == richest[i]) {
+      col2[i].classList.add("green");
+    } else {
+      col2[i].classList.add("red");
+    }
+  }
 }
 
 function dragstartHandler(ev) {
   // Add the target element's id to the data transfer object
   //console.log(ev);
-  ev.dataTransfer.setData("text/plain", ev.target.id);
-  dragItem=ev.target;
-  console.log(dragItem);
-  
-  console.log(dropItem);
+  dragItem = ev.target;
+  dargText = dragItem.innerText;
+  console.log(dargText);
 }
-
-
-
-
+function dragoverHandler(ev) {
+  ev.preventDefault();
+  ev.target.classList.add("dragOver");
+  dropItem = ev.target;
+  dropText = dropItem.innerText;
+  console.log(dropText);
+}
+function dragleaveHandler(ev) {
+  ev.preventDefault();
+  ev.target.classList.remove("dragOver");
+}
+function dropHandler(ev) {
+  ev.target.classList.remove("dragOver");
+  dropItem.innerText = dargText;
+  dragItem.innerText = dropText;
+}
 window.addEventListener("DOMContentLoaded", () => {
-  
-  const arr = shuffle( richest1 );
-  //console.log(arr); 
-  
+  const arr = shuffle(richest1);
+  //console.log(arr);
+
   for (i = 0; i < persons.length; i++) {
     col2[i].innerText = arr[i];
-    col2[i].setAttribute('draggable',true)
-    col2[i].addEventListener("dragstart",dragstartHandler)
-    col2[i].addEventListener("dragover",(ev)=>{ev.target.classList.add("dragOver");dropItem=ev.target})
-    col2[i].addEventListener("dragleave",(ev)=>{ev.target.classList.remove("dragOver")});
-    col2[i].addEventListener("drop",(event)=> {
-      event.preventDefault();
-      dropItem=event.target;
-      dragItem.parentNode.removeChild(dragItem);
-      dragItem.appendChild(dropItem);
-      event.target.appendChild(dragItem);
-    })
+    col2[i].setAttribute("draggable", true);
+    col2[i].addEventListener("dragstart", dragstartHandler);
+    col2[i].addEventListener("dragover", dragoverHandler);
+    col2[i].addEventListener("dragleave", dragleaveHandler);
+    col2[i].addEventListener("dragend", dropHandler);
   }
-    
 });
 // 1. Elon Musk 2. Jeff Bezos 3. Bernard Arnault 4. Mark Zuckerberg
 // 5. Bill Gates 6. Steve Ballmer 7. Warren Buffett 8. Larry Ellison
