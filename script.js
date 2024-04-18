@@ -78,11 +78,14 @@ function dragoverHandler(ev) {
 function dragleaveHandler(ev) {
   ev.preventDefault();
   ev.target.classList.remove("dragOver");
+ // dragItem.classList.remove("dragOver");
+
 }
 function dropHandler(ev) {
   ev.target.classList.remove("dragOver");
   dropItem.innerText = dargText;
   dragItem.innerText = dropText;
+  dropItem.classList.remove('dragOver')
 }
 window.addEventListener("DOMContentLoaded", () => {
   const arr = shuffle(richest1);
