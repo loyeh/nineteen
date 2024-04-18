@@ -62,7 +62,6 @@ function check() {
 }
 
 function dragstartHandler(ev) {
-  // Add the target element's id to the data transfer object
   //console.log(ev);
   dragItem = ev.target;
   dargText = dragItem.innerText;
